@@ -2,7 +2,6 @@ package org.stefan.services;
 
 import org.stefan.dao.ProjectDAO;
 import org.stefan.entities.Project;
-import org.stefan.utils.RangeFilter;
 import org.stefan.utils.ValueFilter;
 
 import javax.ejb.EJB;
@@ -23,7 +22,6 @@ public class ProjectService {
 
     }
 
-
     public List<Project> search(Map<String, ValueFilter> valueFiltersSelected) {
         return projectDAO.search(valueFiltersSelected);
     }
@@ -31,6 +29,19 @@ public class ProjectService {
     public int findNumberOfProjects() {
         return projectDAO.findNumberOfProjects();
     }
+
+    public List<Project> findAll() {
+        return projectDAO.findAll();
+    }
+
+    public Project findById(int id) {
+        return projectDAO.findById(id);
+    }
+
+    public boolean projectIsAvailable(int id) {
+        return projectDAO.projectIsAvailable(id);
+    }
+
 
 
 }

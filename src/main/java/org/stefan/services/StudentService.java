@@ -29,7 +29,7 @@ public class StudentService {
         return studentService;
     }
 
-    public List<Student> getStudents() {
+    public List<Student> findAll() {
         return studentDAO.findAll();
     }
 
@@ -37,7 +37,7 @@ public class StudentService {
         return studentDAO.findUnallocatedStudent();
     }
 
-    public List<StudentsProject> getProjectsWithStudentPreference() {
+    public List<String> getProjectsWithStudentPreference() {
         return studentDAO.findProjectWithStudentPreference();
     }
 

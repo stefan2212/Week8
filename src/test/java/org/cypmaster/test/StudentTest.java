@@ -73,7 +73,7 @@ public class StudentTest {
 
     @Test
     public void getProjectWithStudentPreference() {
-        List<StudentsProject> projectPreference = studentDAO.findProjectWithStudentPreference();
-        System.out.println(projectPreference);
+//        List<StudentsProject> projectPreference = studentDAO.findProjectWithStudentPreference();
+//        System.out.println(projectPreference);
     }
 }

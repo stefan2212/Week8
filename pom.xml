@@ -115,6 +115,15 @@
             <version>1.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.interceptor</groupId>
+            <artifactId>javax.interceptor-api</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+
+
 
     </dependencies>
 

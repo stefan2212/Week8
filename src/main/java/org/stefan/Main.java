@@ -16,30 +16,11 @@ public class Main {
 
 
     public static void getStudents() {
-        List<Student> students = studentService.getStudents();
-        students.forEach(System.out::println);
+
     }
 
     public static void getProjectsWithStudentPreference() {
-        List<StudentsProject> studentsProjects = studentService.getProjectsWithStudentPreference();
-        Map<Project, List<StudentPreferenceDTO>> projectToStudentPreference = new HashMap<>();
-        for (StudentsProject studentsProject : studentsProjects) {
 
-            Project project = studentsProject.getPrimaryKey().getProjects();
-            StudentPreferenceDTO studentPreferenceDTO = new StudentPreferenceDTO();
-            studentPreferenceDTO.setStudent(studentsProject.getPrimaryKey().getStudents());
-            studentPreferenceDTO.setLevelOfPreference(studentsProject.getLevel());
-
-            List<StudentPreferenceDTO> studentPreference = projectToStudentPreference.getOrDefault(project, new ArrayList<>());
-            studentPreference.add(studentPreferenceDTO);
-
-            projectToStudentPreference.put(project, studentPreference);
-        }
-
-        projectToStudentPreference.forEach((key, value) -> {
-            Collections.sort(value);
-            System.out.println(key + " " + value);
-        });
 
     }
 

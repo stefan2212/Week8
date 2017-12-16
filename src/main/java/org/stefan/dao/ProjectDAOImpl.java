@@ -6,6 +6,7 @@ import org.stefan.utils.ValueFilter;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,5 +78,29 @@ import java.util.Map;
 
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    @Override
+    public List<Project> findAll() {
+
+        Query query = entityManager.createQuery("FROM Project")
+                .setHint("org.hibernate.cacheable", true);
+        return query.getResultList();
+    }
+
+    @Override
+    public Project findById(int id) {
+        Project project = entityManager.find(Project.class, id);
+        return project;
+    }
+
+    @Override
+    public boolean projectIsAvailable(int id) {
+        Project project = entityManager.find(Project.class, id);
+        if (project == null) {
+            return false;
+        }
+
+        return project.getAssignedStudent().size() < project.getCapacity();
     }
 }

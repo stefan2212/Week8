@@ -23,7 +23,7 @@ public interface StudentDAO {
 
     List<Student> findUnallocatedStudent();
 
-    List<StudentsProject> findProjectWithStudentPreference();
+    List<String> findProjectWithStudentPreference();
 
     List<Student> findStudentsWithNonePreferences();
 

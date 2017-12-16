@@ -3,13 +3,18 @@ package org.stefan.dao;
 import org.stefan.entities.*;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.*;
 
 
-@Stateless public class StudentDAOImpl implements StudentDAO {
+@Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+
+public class StudentDAOImpl implements StudentDAO {
 
     @PersistenceContext(unitName = "Week7") private EntityManager entityManager;
 
@@ -50,17 +55,17 @@ import java.util.*;
     }
 
     @Override public List<Student> findUnallocatedStudent() {
-        Query query = entityManager.createQuery(
-                "SELECT s.name || ' ' || s.studentsProject.size from Student s where s.studentsProject.size < (Select count(p.id) from Project p)");
-        List<Student> students = query.getResultList();
-        return students;
+        return null;
     }
 
-    @Override public List<StudentsProject> findProjectWithStudentPreference() {
+    @Override
+    public List<String> findProjectWithStudentPreference() {
 
         Query query = entityManager.createQuery(
-                "SELECT avg(sp.levelOfPreference) from StudentsProject sp group by sp.id.projects.id ORDER BY 1 asc ");
-        List<StudentsProject> studentsProjects = query.getResultList();
+                "SELECT concat(avg(sp.levelOfPreference),' ', sp.id.projects.name) from StudentsProject sp " +
+                        "group by sp.id.projects.id,sp.id.projects.name " +
+                        "ORDER BY 1 asc ");
+        List<String> studentsProjects = query.getResultList();
         return studentsProjects;
     }
 
